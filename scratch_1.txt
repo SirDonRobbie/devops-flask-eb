@@ -1,6 +1,0 @@
-devops-flask-eb/
-├── application.py
-├── requirements.txt
-├── tests/
-│   └── test_application.py
-└── README.md
