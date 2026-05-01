@@ -20,3 +20,4 @@ def test_message_route_returns_name():
     response = client.get("/message?name=Student")
     assert response.status_code == 200
     assert b"Hello, Student" in response.data
+

@@ -97,3 +97,6 @@ resource "aws_elastic_beanstalk_environment" "env" {
     value     = "production"
   }
 }
+
+
+
