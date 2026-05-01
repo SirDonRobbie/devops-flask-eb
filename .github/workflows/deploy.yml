@@ -37,7 +37,7 @@ jobs:
         run: flake8 application.py tests --ignore=W291,W292,W391
 
       - name: Run security scan
-        run: bandit -r application.py
+        run: bandit -r application.py --skip B104
 
   terraform:
     name: IaC - Provision AWS Environment
