@@ -31,7 +31,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run unit tests
-        run: pytest
+        run: PYTHONPATH=. pytest
 
       - name: Run linting
         run: flake8 application.py tests
