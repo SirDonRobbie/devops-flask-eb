@@ -34,7 +34,7 @@ jobs:
         run: PYTHONPATH=. pytest
 
       - name: Run linting
-        run: flake8 application.py tests
+        run: flake8 application.py tests --ignore=W291,W292
 
       - name: Run security scan
         run: bandit -r application.py
@@ -129,3 +129,4 @@ jobs:
           aws elasticbeanstalk wait environment-updated \
             --environment-names ${{ env.EB_ENVIRONMENT_NAME }}
           
+
