@@ -74,7 +74,21 @@ jobs:
         working-directory: terraform
         run: terraform plan
 
+      - name: Check if Elastic Beanstalk app already exists
+        id: eb_check
+        run: |
+          if aws elasticbeanstalk describe-applications \
+            --application-names ${{ env.EB_APPLICATION_NAME }} \
+            --region ${{ env.AWS_REGION }} \
+            --query "Applications[0].ApplicationName" \
+            --output text | grep -q "${{ env.EB_APPLICATION_NAME }}"; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Terraform apply
+        if: steps.eb_check.outputs.exists == 'false'
         working-directory: terraform
         run: terraform apply -auto-approve
 
