@@ -125,8 +125,28 @@ jobs:
 
       - name: Wait for deployment
         run: |
-          aws elasticbeanstalk wait environment-updated \
-            --environment-names ${{ env.EB_ENVIRONMENT_NAME }}
+          for i in {1..30}; do
+            STATUS=$(aws elasticbeanstalk describe-environments \
+             --environment-names ${{ env.EB_ENVIRONMENT_NAME }} \
+             --query "Environments[0].Status" \
+             --output text)
+
+            HEALTH=$(aws elasticbeanstalk describe-environments \
+             --environment-names ${{ env.EB_ENVIRONMENT_NAME }} \
+             --query "Environments[0].Health" \
+             --output text)
+
+            echo "Status=$STATUS Health=$HEALTH"
+
+            if [ "$STATUS" = "Ready" ]; then
+              exit 0
+            fi
+
+            sleep 30
+          done
+
+          echo "Environment did not become Ready in time"
+          exit 1
           
 
 
