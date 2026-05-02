@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  AWS_REGION: us-east-1
+  AWS_REGION: eu-north-1
   EB_APPLICATION_NAME: devops-flask-eb-app-v2
   EB_ENVIRONMENT_NAME: devops-flask-eb-env-v2
   DEPLOY_PACKAGE: flask-app-${{ github.sha }}.zip
