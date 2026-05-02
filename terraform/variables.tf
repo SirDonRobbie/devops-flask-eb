@@ -16,10 +16,4 @@ variable "environment_name" {
   default     = "devops-flask-eb-env-v2"
 }
 
-variable "solution_stack_name" {
-  description = "Elastic Beanstalk Python platform"
-  type        = string
-  default     = "64bit Amazon Linux 2023 running Python 3.11"
-}
-
 

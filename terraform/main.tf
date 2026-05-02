@@ -13,6 +13,11 @@ provider "aws" {
   region = var.aws_region
 }
 
+data "aws_elastic_beanstalk_solution_stack" "python" {
+  most_recent = true
+  name_regex  = "^64bit Amazon Linux .* running Python 3.*$"
+}
+
 resource "aws_elastic_beanstalk_application" "app" {
   name        = var.application_name
   description = "Flask application deployed using Terraform and GitHub Actions"
@@ -71,7 +76,7 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 resource "aws_elastic_beanstalk_environment" "env" {
   name                = var.environment_name
   application         = aws_elastic_beanstalk_application.app.name
-  solution_stack_name = var.solution_stack_name
+  solution_stack_name = data.aws_elastic_beanstalk_solution_stack.python.name
 
   setting {
     namespace = "aws:elasticbeanstalk:environment"
