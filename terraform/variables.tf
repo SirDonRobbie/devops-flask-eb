@@ -7,13 +7,13 @@ variable "aws_region" {
 variable "application_name" {
   description = "Elastic Beanstalk application name"
   type        = string
-  default     = "devops-flask-eb-app"
+  default     = "devops-flask-eb-app-v2"
 }
 
 variable "environment_name" {
   description = "Elastic Beanstalk environment name"
   type        = string
-  default     = "devops-flask-eb-env"
+  default     = "devops-flask-eb-env-v2"
 }
 
 variable "solution_stack_name" {
