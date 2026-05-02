@@ -1,24 +1,25 @@
 variable "aws_region" {
-  description = "AWS region to deploy resources"
+  description = "AWS region used for deployment"
   type        = string
-  default     = "eu-west-1"
+  default     = "us-east-1"
 }
 
-variable "app_name" {
+variable "application_name" {
   description = "Elastic Beanstalk application name"
   type        = string
-  default     = "devops-flask-app"
+  default     = "devops-flask-eb-app"
 }
 
 variable "environment_name" {
   description = "Elastic Beanstalk environment name"
   type        = string
-  default     = "devops-flask-env"
+  default     = "devops-flask-eb-env"
 }
 
-variable "instance_type" {
-  description = "EC2 instance type for EB environment"
+variable "solution_stack_name" {
+  description = "Elastic Beanstalk Python platform"
   type        = string
-  default     = "t2.micro"
+  default     = "64bit Amazon Linux 2023 v4.3.0 running Python 3.11"
 }
+
 
